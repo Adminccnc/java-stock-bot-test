@@ -129,7 +129,7 @@ function doPost(e) {
         },
         {
           "type": "text",
-          "text": "บริษัท พานาคอฟฟี่ จำกัด",
+          "text": "compunnyname",
           "size": "xs",
           "color": "#aaaaaa",
           "align":"center",
@@ -274,7 +274,7 @@ function doPost(e) {
             },
             {
               "type": "text",
-              "text": "ว่าที่ ร.ต.หญิง วีรนุช จันทร์แหง",
+              "text": "name stock keeper",
               "color": "#aaaaaa",
               "size": "xs",
               "align": "end"
