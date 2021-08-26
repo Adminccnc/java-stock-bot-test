@@ -4,6 +4,7 @@ function doPost(e) {
   var ss = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1JpKG_CKLKdz4YR2M9Qo2_lqP97AdLU8ZQWsej_o3yJQ/edit')
   var sh = ss.getSheetByName('July-21(New)')
     var today = Utilities.formatDate(new Date(),"GMT+7","dd")
+    var todaynow = Utilities.formatDate(new Date(),"GMT+7","dd/MM")
     var todayline = Utilities.formatDate(new Date(), "GMT+7", "dd/MM/YYYY")
     var num = today; // "82144251"
     num = parseFloat(num);
@@ -34,8 +35,10 @@ function doPost(e) {
           i=i+27;
         }else if(i==5){
           i=i+33;
-        }else{
+        }else if(i==6){
           i=i+39;
+        }else{
+          return;
         }
         var cc = sh.getRange(i,2).getValue();
         Logger.log(cc);
@@ -51,20 +54,20 @@ function doPost(e) {
   
             //_________กรณีที่ยังไม่มีการจัดส่ง________________________________________//
             if (qw5==0){
-            var ok = 'No Delivery Yet \n'
+            var qw5 = 'No Delivery Yet'
                //Logger.log(num)
             //var x = num2-3
             //var nday = 'Yesterday วันที่  ' +x
             //var perd = 'inventory : ' +qw1+ 'Delivery Plan : ' +qw2+ 'Production Plan : ' +qw3
             var y = num1-3
-            var lastnday = 'Today วันที่ ' +y
+            /*var lastnday = 'Today วันที่ ' +y
             var lastd = 'Delivery Plan : ' +ok+ 'inventory : ' +qw4+ 'Production Plan : ' +qw6
             //Logger.log(nday)
             //Logger.log(perd)
             Logger.log(lastnday)
             Logger.log(lastd)
             
-            Logger.log('ข้อมูล ณ วันที่ '+todayline)
+            Logger.log('ข้อมูล ณ วันที่ '+todayline)*/
   
             }else{
             //Logger.log(num)
@@ -106,25 +109,35 @@ function doPost(e) {
           "text": "คลังสินค้า",
           "weight": "bold",
           "color": "#de6825",
-          "size": "sm"
+          "size": "xl",
+          "align":"center"
+        },
+        {
+          "type": "image",
+          "url": "https://thecoffeenery.com/wp-content/uploads/2021/08/Logo_PANA_Coffee_new.jpg",
+          "size": "lg",
+          "aspectRatio": "2:1",
+          "align":"center"
         },
         {
           "type": "text",
           "text": ""+cc,
           "weight": "bold",
           "size": "sm",
-          "margin": "md"
+          "margin": "md",
+          "align":"center"
         },
         {
           "type": "text",
           "text": "บริษัท พานาคอฟฟี่ จำกัด",
           "size": "xs",
           "color": "#aaaaaa",
+          "align":"center",
           "wrap": true
         },
         {
           "type": "separator",
-          "margin": "xxl"
+          "margin": "xs",
         },
         {
           "type": "box",
@@ -138,19 +151,22 @@ function doPost(e) {
               "contents": [
                 {
                   "type": "text",
-                  "text": "ToDay วันที่ ",
+                  "text": "วันที่ : "+todaynow,
                   "size": "sm",
                   "color": "#555555",
-  
                 },
-                {
+                /*{
                   "type": "text",
                   "text": ""+y,
                   "size": "sm",
                   "color": "#111111",
                   "align": "end"
-                }
+                }*/
               ]
+            },
+            {
+            "type": "separator",
+             "margin": "sm"
             },
             {
               "type": "box",
@@ -212,6 +228,10 @@ function doPost(e) {
                 }
               ]
             },
+            {
+            "type": "separator",
+             "margin": "sm"
+            },
               {
               "type": "box",
               "layout": "horizontal",
@@ -234,7 +254,7 @@ function doPost(e) {
             },
             {
               "type": "separator",
-              "margin": "xxl"
+              "margin": "xl"
             },
   
           ]
@@ -260,11 +280,25 @@ function doPost(e) {
               "align": "end"
             }
           ]
-        }
+        },
       ]
-    }
+    }, 
+    "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "action": {
+                "type": "uri",
+                "label": "ดูรายละเอียดเพิ่มเติมทั้งหมด",
+                "uri": "https://thecoffeenery.com"
+              }
+            }
+          ]
+        }
   }
-    
   }
           
      }
@@ -275,8 +309,7 @@ function doPost(e) {
       var replyJSON = ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
       //Logger.log(replyJSON);
       return replyJSON;
-            
-          }else{Logger.log('No Log')}
+        }else{Logger.log('No Log')}
       }
     }
   }
