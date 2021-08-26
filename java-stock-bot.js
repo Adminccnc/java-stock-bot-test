@@ -1,8 +1,8 @@
 function doPost(e) {
   var data = JSON.parse(e.postData.contents)
   var gg = data.originalDetectIntentRequest.payload.data.message.text;  
-  var ss = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1JpKG_CKLKdz4YR2M9Qo2_lqP97AdLU8ZQWsej_o3yJQ/edit')
-  var sh = ss.getSheetByName('July-21(New)')
+  var ss = SpreadsheetApp.openByUrl('SS HEAR')
+  var sh = ss.getSheetByName('NAME')
     var today = Utilities.formatDate(new Date(),"GMT+7","dd")
     var todaynow = Utilities.formatDate(new Date(),"GMT+7","dd/MM")
     var todayline = Utilities.formatDate(new Date(), "GMT+7", "dd/MM/YYYY")
